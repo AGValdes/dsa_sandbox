@@ -9,7 +9,7 @@ namespace DataStructures
     public Node<T> Front { get; set; }
     public Node<T> Rear { get; set; }
 
-
+    //-------------------Methods----------------------//
     public void Enqueue(T value)
     {
       Node<T> node = new Node<T>(value);

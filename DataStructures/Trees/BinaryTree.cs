@@ -9,7 +9,7 @@ namespace DataStructures
 
     public List<T> Values { get; set; }
 
-
+    //-------------------Methods----------------------//
     public void Add(Node<T> node, T value)
     {
       Node<T> newNode = new Node<T>(value);
