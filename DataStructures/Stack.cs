@@ -8,6 +8,8 @@ namespace DataStructures
   {
     public Node<T> top { get; set; }
 
+    //-------------------Methods----------------------//
+
     public bool isEmpty()
     {
       return top != null;
