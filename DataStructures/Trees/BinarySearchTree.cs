@@ -2,12 +2,17 @@
 using System.Text;
 using System.Collections.Generic;
 
+
 namespace DataStructures
 {
   public class BinarySearchTree<T> : BinaryTree<T> where T : IComparable
   {
-    public void Add(Node<T> node, T value)
+
+    //-------------------Methods----------------------//
+
+    public void AddInOrder(Node<T> node, T value)
     {
+
       Node<T> newNode = new Node<T>(value);
 
       if (Root == null)

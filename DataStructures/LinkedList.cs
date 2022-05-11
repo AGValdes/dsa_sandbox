@@ -8,24 +8,15 @@ namespace DataStructures
   {
     public Node<T> Head { get; set; }
 
-    /// <summary>
-    /// Plain, Empty Linked List
-    /// Usage: LinkedLIst myLIst = new LinkedList();
-    /// </summary>
     public LinkedList() { }
 
-    /// <summary>
-    /// Creates a linked list with a node, assigning Head
-    /// Usage: LinkedList myList = new LinkedList(4);
-    /// </summary>
-    /// <param name="value"></param>
     public LinkedList(T value)
     {
       Node<T> node = new Node<T>(value);
       Head = node;
     }
 
-    //-------------------------- METHODS--------------------------//
+    //-------------------Methods----------------------//
 
     public string toString()
     {
