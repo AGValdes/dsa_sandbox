@@ -1,14 +1,45 @@
 ﻿using System;
+using System.Text;
+using System.Collections.Generic;
+using DataStructures;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
-public class Class1
+public class Multi_Bracket_Validation
 {
-	public Class1()
+	public class Bracket
 	{
-		//
-		// TODO: Add constructor logic here
-		//
+		public static char Opposite { get; set; }
+
+		public Bracket(char opposite)
+		{
+			Opposite = opposite;
+		}
+
+	}
+
+	public static DataStructures.Stack<Bracket> Stack = new DataStructures.Stack<Bracket>();
+	public static char[] TurnStringIntoCharArray(string bracketstring)
+	{
+
+	}
+
+	public static List<Bracket> GiveCharsTheirOpposites(char[] arrayOfChars)
+	{
+
+	}
+
+	public static void PutOpeningBracketsInStack(List<Bracket> list)
+	{
+
+	}
+
+	public static void CheckStackForOpposites(Stack<Bracket> stack)
+	{
+
+	}
+
+	public static bool IsItEmpty(Stack<Bracket> stack)
+	{
+
 	}
 }
+
