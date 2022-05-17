@@ -6,7 +6,11 @@ namespace AlgorithmChallenges
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			for (var i = 0; i < 6; i++)
+			{
+				Console.WriteLine(Multi_Bracket_Validation.TurnStringIntoCharArray("{[()]}")[i]);
+			}
+			
 		}
 	}
 }

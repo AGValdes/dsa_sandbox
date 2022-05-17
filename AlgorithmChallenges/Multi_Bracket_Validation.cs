@@ -7,13 +7,19 @@ public class Multi_Bracket_Validation
 {
 	public class Bracket
 	{
-		public static char OGBracket { get; set; }
-		public static char Opposite { get; set; }
+		public char OGBracket { get; set; }
+		public char Opposite { get; set; }
+		public bool IsOpening { get; set; }
 
-		public Bracket(char ogbracket, char opposite)
+		public Bracket (char ogBracket)
 		{
-			OGBracket = ogbracket;
+			OGBracket = ogBracket;
+		}
+		public Bracket(char ogBracket, char opposite, bool isOpening)
+		{
+			OGBracket = ogBracket;
 			Opposite = opposite;
+			IsOpening = isOpening;		
 		}
 
 	}
@@ -23,53 +29,90 @@ public class Multi_Bracket_Validation
 	{
 		return bracketstring.ToCharArray();
 	}
-	
-	public static char DetermineOpposite(char character)
-	{	
-		if (character == '{')
-		{
-			char opposite = '}';
-			return opposite;
-		}
-		else if (character == '[')
-		{
-			char opposite = ']';
-			return opposite;
-		}
-		else if (character == '(')
-		{
-			char opposite = ')';
-			return opposite;	
-		}
-    else
-		{
-			return '-';
-		}
-	}
-	public static List<Bracket> GiveCharsTheirOpposites(char[] arrayOfChars)
+
+	public static Bracket[] MakeBracketObjects (char[] arrayOfChars)
 	{
-		List<Bracket> brackets = new List<Bracket>();
+		Bracket[] bracketObjects = new Bracket[arrayOfChars.Length];
+
 		for (int i = 0; i < arrayOfChars.Length; i++)
 		{
-			Bracket newBracketObj = new Bracket(arrayOfChars[i], DetermineOpposite(arrayOfChars[i]));
-			brackets.Add(newBracketObj);
-		}	
-		return brackets;
+
+			if (arrayOfChars[i] == '{')
+			{
+				char opposite = '}';
+				bracketObjects[i] = new Bracket(arrayOfChars[i], opposite, true);
+			}
+			else if (arrayOfChars[i] == '[')
+			{
+				char opposite = ']';
+				bracketObjects[i] = new Bracket(arrayOfChars[i], opposite, true);
+			}
+			else if (arrayOfChars[i] == '(')
+			{
+				char opposite = ')';
+				bracketObjects[i] = new Bracket(arrayOfChars[i], opposite, true);
+			}
+			else
+			{
+				bracketObjects[i] = new Bracket(arrayOfChars[i]);
+			}
+		}
+
+		return bracketObjects;
+	}
+
+
+
+	public static void PutOpeningBracketsInStack(Bracket[] brackets)
+	{
+		for (int i = 0; i < brackets.Length; i++)
+		{
+			if (brackets[i].IsOpening == true)
+			{
+				Stack.Push(brackets[i]);	
+			}
+		}
+
+  }
+
+	public static void CheckStackForOpposites(DataStructures.Stack<Bracket> stack, Bracket[] bracketArr)
+	{
+		Node<Bracket> topNodeOfStack = stack.Peek();
+		Bracket topBracketOftack = topNodeOfStack.Value;
 		
+		for (int i = 0; i < bracketArr.Length; i++)
+		{
+			if (bracketArr[i].OGBracket == topBracketOftack.Opposite)
+			{
+				Stack.Pop();
+			}
+			else
+			{
+				continue;
+			}
+		}
 	}
 
-	public static void PutOpeningBracketsInStack(List<Bracket> list)
+	public static bool IsItEmpty(DataStructures.Stack<Bracket> stack)
 	{
-
+		if (stack.Peek() == null){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
-	public static void CheckStackForOpposites(Stack<Bracket> stack)
+	public static bool DoAllOpeningBracketsHaveClosingBrackets(string bracketstring)
 	{
+		char[] characterArray = TurnStringIntoCharArray(bracketstring);
+		Bracket[] bracketObjArray = MakeBracketObjects(characterArray);
+	  
+		PutOpeningBracketsInStack(bracketObjArray);
+		CheckStackForOpposites(Stack, bracketObjArray);
 
-	}
-
-	public static bool IsItEmpty(Stack<Bracket> stack)
-	{
+		return IsItEmpty(Stack);
 
 	}
 }
